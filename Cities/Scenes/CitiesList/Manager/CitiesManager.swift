@@ -20,7 +20,7 @@ enum Result<T> {
 
 protocol CitiesManagerLogic {
     func fetchCities(completion: @escaping (Result<[City]>) -> Void)
-    func fetchTrie(completion: @escaping (Result<Trie<City>>) -> Void)
+    func fetchFilteredCities(with prefix: String, completion: @escaping (Result<[City]>) -> Void)
 }
 
 class CitiesManager: CitiesManagerLogic {
@@ -30,15 +30,21 @@ class CitiesManager: CitiesManagerLogic {
     private let fileName = "cities"
     
     func fetchCities(completion: @escaping (Result<[City]>) -> Void) {
-        if case let .success(cities) = citiesData() {
+        if !citiesList.isEmpty {
+            completion(.success(citiesList))
+        }
+        else if case let .success(cities) = citiesData() {
             cities.forEach { citiesTrie.insert(word: $0.name, data: $0) }
+            
+            completion(.success(cities))
         } else {
             completion(.failure(.fileNotFound))
         }
     }
     
-    func fetchTrie(completion: @escaping (Result<Trie<City>>) -> Void) {
-        completion(.success(citiesTrie))
+    func fetchFilteredCities(with prefix: String, completion: @escaping (Result<[City]>) -> Void) {
+        let filteredCities = citiesTrie.findWordsWithPrefix(prefix: prefix)
+        completion(.success(filteredCities))
     }
 
     private func citiesData() -> Result<[City]> {
@@ -50,6 +56,7 @@ class CitiesManager: CitiesManagerLogic {
                                     options: .mappedIfSafe)
             let citiesModel = try JSONDecoder().decode([City].self, from: jsonData)
             let sortedCities = citiesModel.sorted{ $0.name < $1.name }
+            self.citiesList = sortedCities
             return .success(sortedCities)
         } catch {
             return .failure(.unexpected(error.localizedDescription))
