@@ -42,7 +42,6 @@ class CitiesListInteractor: CitiesListInteractorLogic {
                 interactor.presenter?.showCitiesList(cities: filtereCities)
             case let .failure(error):
                 interactor.presenter?.showError(message: error.localizedDescription)
-                
             }
         })
     }

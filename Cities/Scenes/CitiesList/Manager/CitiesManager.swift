@@ -24,9 +24,8 @@ protocol CitiesManagerLogic {
 }
 
 class CitiesManager: CitiesManagerLogic {
-    var citiesList = [City]()
-    var citiesTrie = Trie<City>()
-    
+    private var citiesList = [City]()
+    private var citiesTrie = Trie<City>()
     private let fileName = "cities"
     
     func fetchCities(completion: @escaping (Result<[City]>) -> Void) {
@@ -46,7 +45,7 @@ class CitiesManager: CitiesManagerLogic {
         let filteredCities = citiesTrie.findWordsWithPrefix(prefix: prefix)
         completion(.success(filteredCities))
     }
-
+    
     private func citiesData() -> Result<[City]> {
         guard
             let filePath = Bundle.main.path(forResource: fileName, ofType: "json")
