@@ -12,11 +12,24 @@ class CitiesListViewController: UIViewController {
     private weak var presenter: CitiesListPresenterLogic?
     private weak var interactor: CitiesListInteractorLogic?
     private var viewModel = [CityViewModel]()
+    @IBOutlet private weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupTableView()
+    }
+    
+    private func setupTableView() {
+        setupTableViewBackground()
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func setupTableViewBackground() {
+        let imageView = UIImageView(image: UIImage(named: "city-background"))
+        imageView.contentMode = .scaleAspectFill
+        tableView.backgroundView = imageView
     }
     
     init(interactor: CitiesListInteractorLogic,
@@ -39,5 +52,23 @@ extension CitiesListViewController: CitiesListDisplayLogic {
     
     func displayCities(viewModel: [CityViewModel]) {
         self.viewModel = viewModel
+        tableView.reloadData()
     }
+}
+
+extension CitiesListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+extension CitiesListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
 }

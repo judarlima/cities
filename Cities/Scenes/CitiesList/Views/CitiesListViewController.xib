@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CitiesListViewController" customModule="Cities" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="nW9-ZY-RsV" id="ver-vF-jWa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,7 +20,18 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="0.62969995420000002" green="0.45402592000000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nW9-ZY-RsV">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="nW9-ZY-RsV" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="2qF-09-qgW"/>
+                <constraint firstItem="nW9-ZY-RsV" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="VHL-k6-UnF"/>
+                <constraint firstItem="nW9-ZY-RsV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pLJ-0C-TMU"/>
+                <constraint firstItem="nW9-ZY-RsV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wlH-41-kqF"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
