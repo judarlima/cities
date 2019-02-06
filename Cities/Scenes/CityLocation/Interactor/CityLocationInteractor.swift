@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+protocol CityLocationInteractorLogic {
+    func location(from city: CityViewModel)
+}
+
+class CityLocationInteractor: CityLocationInteractorLogic {
+    private var presenter: CityLocationPresenterLogic
+    
+    init(presenter: CityLocationPresenterLogic) {
+        self.presenter = presenter
+    }
+    
+    func location(from city: CityViewModel) {
+        presenter.showCityLocation(city)
+    }
+}
