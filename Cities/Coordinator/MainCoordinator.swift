@@ -19,10 +19,20 @@ class MainCoordinator: Coordinator {
         let presenter = CitiesListPresenter()
         let manager = CitiesManager()
         let interactor = CitiesListInteractor(presenter: presenter, manager: manager)
-        let viewController = CitiesListViewController(interactor: interactor, presenter: presenter)
+        let viewController = CitiesListViewController(coordinator: self,
+                                                      interactor: interactor,
+                                                      presenter: presenter)
         presenter.viewController = viewController
         navigationController.pushViewController(viewController, animated: false)
     }
     
-    func cityDetail(viewModel: CityViewModel) { }
+    func cityDetail(viewModel: CityViewModel) {
+        let presenter = CityLocationPresenter()
+        let interactor = CityLocationInteractor(presenter: presenter)
+        let viewController = CityLocationViewController(interactor: interactor,
+                                                        presenter: presenter)
+        presenter.viewController = viewController
+        viewController.bind(viewmodel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }
