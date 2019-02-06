@@ -21,7 +21,6 @@ class MainCoordinator: Coordinator {
         let interactor = CitiesListInteractor(presenter: presenter, manager: manager)
         let viewController = CitiesListViewController(interactor: interactor, presenter: presenter)
         presenter.viewController = viewController
-        
         navigationController.pushViewController(viewController, animated: false)
     }
     
