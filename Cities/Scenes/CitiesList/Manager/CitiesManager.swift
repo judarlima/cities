@@ -10,7 +10,7 @@ import Foundation
 
 enum CitiesError: Error {
     case fileNotFound
-    case unexpected(Error)
+    case unexpected(String)
 }
 
 enum Result<T> {
@@ -19,18 +19,28 @@ enum Result<T> {
 }
 
 protocol CitiesManagerLogic {
-    func fetchData(completion: (Result<[City]>) -> Void)
+    func fetchCities(completion: @escaping (Result<[City]>) -> Void)
+    func fetchTrie(completion: @escaping (Result<Trie<City>>) -> Void)
 }
 
 class CitiesManager: CitiesManagerLogic {
     var citiesList = [City]()
+    var citiesTrie = Trie<City>()
     
     private let fileName = "cities"
     
-    func fetchData(completion: (Result<[City]>) -> Void) {
-        completion(citiesData())
+    func fetchCities(completion: @escaping (Result<[City]>) -> Void) {
+        if case let .success(cities) = citiesData() {
+            cities.forEach { citiesTrie.insert(word: $0.name, data: $0) }
+        } else {
+            completion(.failure(.fileNotFound))
+        }
     }
     
+    func fetchTrie(completion: @escaping (Result<Trie<City>>) -> Void) {
+        completion(.success(citiesTrie))
+    }
+
     private func citiesData() -> Result<[City]> {
         guard
             let filePath = Bundle.main.path(forResource: fileName, ofType: "json")
@@ -42,7 +52,7 @@ class CitiesManager: CitiesManagerLogic {
             let sortedCities = citiesModel.sorted{ $0.name < $1.name }
             return .success(sortedCities)
         } catch {
-            return .failure(.unexpected(error))
+            return .failure(.unexpected(error.localizedDescription))
         }
     }
     
