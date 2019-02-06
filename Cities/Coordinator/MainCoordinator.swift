@@ -16,11 +16,14 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = ViewController()
-        navigationController.pushViewController(vc, animated: false)
+        let presenter = CitiesListPresenter()
+        let manager = CitiesManager()
+        let interactor = CitiesListInteractor(presenter: presenter, manager: manager)
+        let viewController = CitiesListViewController(interactor: interactor, presenter: presenter)
+        presenter.viewController = viewController
+        
+        navigationController.pushViewController(viewController, animated: false)
     }
     
-    func cityDetail () {
-        
-    }
+    func cityDetail(viewModel: CityViewModel) { }
 }
