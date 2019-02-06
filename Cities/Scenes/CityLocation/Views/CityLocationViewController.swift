@@ -9,14 +9,25 @@
 import UIKit
 import MapKit
 
+protocol CityLocationDisplayLogic {
+    func displayMap(location: CityAnnotation)
+}
+
 class CityLocationViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     private var viewModel: CityViewModel!
-    private var interactor: CityLocationInteractor?
+    private var interactor: CityLocationInteractorLogic?
+    private weak var presenter: CityLocationPresenterLogic?
     
-    init(city: CityViewModel) {
-        self.viewModel = city
+    init(interactor: CityLocationInteractorLogic,
+         presenter: CityLocationPresenterLogic) {
+        self.interactor = interactor
+        self.presenter = presenter
         super.init(nibName: "CityLocationViewController", bundle: Bundle.main)
+    }
+    
+    func bind(viewmodel: CityViewModel) {
+        self.viewModel = viewmodel
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,30 +38,11 @@ class CityLocationViewController: UIViewController {
         super.viewDidLoad()
         interactor?.location(from: viewModel)
     }
-    
+}
+
+extension CityLocationViewController: CityLocationDisplayLogic {
     func displayMap(location: CityAnnotation) {
         mapView.addAnnotation(location)
         mapView.setRegion(location.region, animated: true)
-    }
-    
-}
-
-class CityLocationInteractor {
-    func location(from city: CityViewModel) {
-        let presenter = CityLocationPresenter()
-        presenter.showCityLocation(city)
-    }
-}
-
-class CityLocationPresenter {
-    var viewController: CityLocationViewController?
-    
-    init(<#parameters#>) {
-        <#statements#>
-    }
-    
-    func showCityLocation(_ city: CityViewModel) {
-        let cityAnnotation = CityAnnotation(viewModel: city)
-        viewController?.displayMap(location: cityAnnotation)
     }
 }
