@@ -23,6 +23,10 @@
 		8701C4F3220B29F8001D0A9D /* CitiesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C4F1220B29F8001D0A9D /* CitiesListViewController.swift */; };
 		8701C4F4220B29F8001D0A9D /* CitiesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8701C4F2220B29F8001D0A9D /* CitiesListViewController.xib */; };
 		8701C4F7220B2CF3001D0A9D /* CitiesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C4F6220B2CF3001D0A9D /* CitiesListPresenter.swift */; };
+		8701C4FA220B3B51001D0A9D /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C4F8220B3B51001D0A9D /* CityTableViewCell.swift */; };
+		8701C4FB220B3B51001D0A9D /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8701C4F9220B3B51001D0A9D /* CityTableViewCell.xib */; };
+		8701C4FE220B3C12001D0A9D /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C4FD220B3C12001D0A9D /* CityViewModel.swift */; };
+		8701C500220B5A29001D0A9D /* smallCities.json in Resources */ = {isa = PBXBuildFile; fileRef = 8701C4FF220B5A29001D0A9D /* smallCities.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,10 @@
 		8701C4F1220B29F8001D0A9D /* CitiesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListViewController.swift; sourceTree = "<group>"; };
 		8701C4F2220B29F8001D0A9D /* CitiesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CitiesListViewController.xib; sourceTree = "<group>"; };
 		8701C4F6220B2CF3001D0A9D /* CitiesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListPresenter.swift; sourceTree = "<group>"; };
+		8701C4F8220B3B51001D0A9D /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		8701C4F9220B3B51001D0A9D /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
+		8701C4FD220B3C12001D0A9D /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
+		8701C4FF220B5A29001D0A9D /* smallCities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = smallCities.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,7 @@
 		8701C4D1220A4956001D0A9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8701C4FF220B5A29001D0A9D /* smallCities.json */,
 				8701C4BD220A30DE001D0A9D /* Info.plist */,
 				8701C4BA220A30DE001D0A9D /* LaunchScreen.storyboard */,
 				8701C4E3220A638B001D0A9D /* cities.json */,
@@ -148,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				8701C4F5220B2CDA001D0A9D /* Presenter */,
-				8701C4F0220B2991001D0A9D /* View */,
+				8701C4F0220B2991001D0A9D /* Views */,
 				8701C4E7220A75C7001D0A9D /* Interactor */,
 				8701C4DB220A5FD9001D0A9D /* Manager */,
 			);
@@ -168,6 +177,7 @@
 			children = (
 				8701C4DF220A615B001D0A9D /* City.swift */,
 				8701C4E1220A61A3001D0A9D /* Coordinate.swift */,
+				8701C4FD220B3C12001D0A9D /* CityViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,13 +199,15 @@
 			path = Trie;
 			sourceTree = "<group>";
 		};
-		8701C4F0220B2991001D0A9D /* View */ = {
+		8701C4F0220B2991001D0A9D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				8701C4F1220B29F8001D0A9D /* CitiesListViewController.swift */,
 				8701C4F2220B29F8001D0A9D /* CitiesListViewController.xib */,
+				8701C4F8220B3B51001D0A9D /* CityTableViewCell.swift */,
+				8701C4F9220B3B51001D0A9D /* CityTableViewCell.xib */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8701C4F5220B2CDA001D0A9D /* Presenter */ = {
@@ -287,7 +299,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8701C4FB220B3B51001D0A9D /* CityTableViewCell.xib in Resources */,
 				8701C4EA220A7EF1001D0A9D /* cities.json in Resources */,
+				8701C500220B5A29001D0A9D /* smallCities.json in Resources */,
 				8701C4F4220B29F8001D0A9D /* CitiesListViewController.xib in Resources */,
 				8701C4BC220A30DE001D0A9D /* LaunchScreen.storyboard in Resources */,
 				8701C4B9220A30DE001D0A9D /* Assets.xcassets in Resources */,
@@ -314,9 +328,11 @@
 				8701C4ED220B1167001D0A9D /* Trie.swift in Sources */,
 				8701C4D8220A511C001D0A9D /* MainCoordinator.swift in Sources */,
 				8701C4E0220A615B001D0A9D /* City.swift in Sources */,
+				8701C4FA220B3B51001D0A9D /* CityTableViewCell.swift in Sources */,
 				8701C4B2220A30DC001D0A9D /* AppDelegate.swift in Sources */,
 				8701C4EF220B117D001D0A9D /* TrieNode.swift in Sources */,
 				8701C4DD220A5FFB001D0A9D /* CitiesManager.swift in Sources */,
+				8701C4FE220B3C12001D0A9D /* CityViewModel.swift in Sources */,
 				8701C4D6220A4C43001D0A9D /* CoordinatorProtocol.swift in Sources */,
 				8701C4F3220B29F8001D0A9D /* CitiesListViewController.swift in Sources */,
 			);
@@ -473,6 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N72WY42PA7;
 				INFOPLIST_FILE = "$(SRCROOT)/Cities/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -490,6 +507,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N72WY42PA7;
 				INFOPLIST_FILE = "$(SRCROOT)/Cities/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -508,6 +526,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N72WY42PA7;
 				INFOPLIST_FILE = CitiesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -528,6 +547,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N72WY42PA7;
 				INFOPLIST_FILE = CitiesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
