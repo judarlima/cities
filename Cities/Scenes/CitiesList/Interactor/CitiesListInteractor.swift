@@ -9,12 +9,7 @@
 import Foundation
 
 struct CityViewModel {
-    init(_ city: City) { }
-}
-
-protocol CitiesListPresenterLogic: class {
-    func showCitiesList(viewModel: [CityViewModel])
-    func showError(message: String)
+    init(city: City) { }
 }
 
 protocol CitiesListInteractorLogic: class {
@@ -32,18 +27,18 @@ class CitiesListInteractor: CitiesListInteractorLogic {
     }
     
     func listCities() {
-        manager?.fetchData(completion: { (data) in
+        manager?.fetchCities(completion: { [weak self] (data) in
+            guard let interactor = self else { return }
             switch data {
             case let .success(cities):
-                let viewModel = cities.map { CityViewModel($0) }
-                presenter?.showCitiesList(viewModel: viewModel)
+                interactor.presenter?.showCitiesList(cities: cities)
             case let .failure(error):
-                presenter?.showError(message: error.localizedDescription)
+                interactor.presenter?.showError(message: error.localizedDescription)
             }
         })
     }
     
     func searchCity(with prefix: String) {
-        //
+        
     }
 }
