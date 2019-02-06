@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CityViewModel: Hashable {
+struct CityViewModel {
     let name: String
     let lat: String
     let lon: String
