@@ -20,7 +20,7 @@ protocol CitiesListPresenterLogic: class {
 }
 
 class CitiesListPresenter: CitiesListPresenterLogic {
-    weak var viewController: CitiesListDisplayLogic?
+    var viewController: CitiesListDisplayLogic?
     
     func showError(message: String) {
         viewController?.displayError(message: message)
@@ -29,9 +29,5 @@ class CitiesListPresenter: CitiesListPresenterLogic {
     func showCitiesList(cities: [City]) {
         let viewModel = cities.map { CityViewModel(city: $0) }
         viewController?.displayCities(viewModel: viewModel)
-    }
-    
-    func showFilteredList(cities: [City]) {
-        
     }
 }
