@@ -11,18 +11,16 @@ import XCTest
 
 class MainCoordinatorTests: XCTestCase {
     var sut: MainCoordinator!
-    var navigationController: UINavigationController!
 
     override func setUp() {
-        navigationController = UINavigationController()
-        sut = MainCoordinator(navigationController: navigationController)
+        sut = MainCoordinator.shared
     }
     
     func testWhenStartThenPresentCitiesListViewController() {
         sut.start()
         
         XCTAssertTrue(
-            navigationController.viewControllers.first!.isKind(of: CitiesListViewController.self)
+            sut.navigationController.viewControllers.first!.isKind(of: CitiesListViewController.self)
         )
     }
     
@@ -30,12 +28,12 @@ class MainCoordinatorTests: XCTestCase {
         let viewModel = CityViewModel(city: City(id: 1,
                                                  country: "BR",
                                                  name: "Imperatriz",
-                                                 coord: Coordinate(lat: 55.3,
+                                                 coord: City.Coordinate(lat: 55.3,
                                                                    lon: 78.9)))
         sut.cityDetail(viewModel: viewModel)
         
         XCTAssertTrue(
-            navigationController.viewControllers.first!.isKind(of: CityLocationViewController.self)
+            sut.navigationController.viewControllers.last!.isKind(of: CityLocationViewController.self)
         )
     }
 

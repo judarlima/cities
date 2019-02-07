@@ -17,16 +17,13 @@ final class CitiesListViewController: UIViewController {
     private weak var presenter: CitiesListPresenterLogic?
     private var interactor: CitiesListInteractorLogic?
     private var viewModel = [CityViewModel]()
-    private var coordinator: MainCoordinator?
     private let cellIdentifier = "CityTableViewCell"
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
     
-    init(coordinator: MainCoordinator,
-        interactor: CitiesListInteractorLogic,
+    init(interactor: CitiesListInteractorLogic,
          presenter: CitiesListPresenterLogic) {
         super.init(nibName: "CitiesListViewController", bundle: Bundle.main)
-        self.coordinator = coordinator
         self.presenter = presenter
         self.interactor = interactor
     }
@@ -86,7 +83,7 @@ extension CitiesListViewController: CitiesListDisplayLogic {
 
 extension CitiesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.cityDetail(viewModel: viewModel[indexPath.row])
+        interactor?.cityLocation(city: viewModel[indexPath.row])
     }
     
 }

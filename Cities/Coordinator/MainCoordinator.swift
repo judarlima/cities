@@ -8,19 +8,19 @@
 
 import UIKit
 
-final class MainCoordinator: Coordinator {
-    var navigationController: UINavigationController
+class MainCoordinator {
+    public static let shared = MainCoordinator()
+    let navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    private init(navigationController: UINavigationController = UINavigationController()) {
         self.navigationController = navigationController
     }
     
     func start() {
         let presenter = CitiesListPresenter()
-        let manager = CitiesManager(dataHandler: JsonDataHandler())
+        let manager = CityManager(dataHandler: JsonDataHandler())
         let interactor = CitiesListInteractor(presenter: presenter, manager: manager)
-        let viewController = CitiesListViewController(coordinator: self,
-                                                      interactor: interactor,
+        let viewController = CitiesListViewController(interactor: interactor,
                                                       presenter: presenter)
         presenter.viewController = viewController
         navigationController.pushViewController(viewController, animated: false)

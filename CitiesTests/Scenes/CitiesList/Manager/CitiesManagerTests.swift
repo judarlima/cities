@@ -10,12 +10,12 @@ import XCTest
 @testable import Cities
 
 class CitiesManagerTests: XCTestCase {
-    var sut: CitiesManager!
+    var sut: CityManager!
     var dataHandler: JsonDataHandlerMock!
     
     override func setUp() {
         dataHandler = JsonDataHandlerMock()
-        sut = CitiesManager(dataHandler: dataHandler)
+        sut = CityManager(dataHandler: dataHandler)
     }
     
     func testWhenDataHandlerReturnsDataThenGeneratesCitiesModel() {

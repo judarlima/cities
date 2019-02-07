@@ -44,4 +44,17 @@ class CitiesListInteractorTests: XCTestCase {
         XCTAssertEqual(expectedFirstCityName, presenter.cities.first!.name)
         XCTAssertTrue(presenter.errorMessage.isEmpty)
     }
+    
+    func testCityLocationThenPresentCityLocationView() {
+        let viewModel = CityViewModel(city: City(id: 1,
+                                                 country: "BR",
+                                                 name: "Rio de Janeiro",
+                                                 coord: City.Coordinate(lat: 1.5,
+                                                                        lon: 1.5)))
+        sut.cityLocation(city: viewModel)
+        
+        XCTAssertTrue(
+            MainCoordinator.shared.navigationController.viewControllers.last!.isKind(of: CityLocationViewController.self)
+        )
+    }
 }

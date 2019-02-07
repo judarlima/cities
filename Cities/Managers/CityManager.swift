@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol CitiesManagerLogic {
+protocol CityManagerLogic {
     func fetchCities(completion: @escaping (Result<[City]>) -> Void)
     func fetchFilteredCities(with prefix: String, completion: @escaping (Result<[City]>) -> Void)
 }
 
-final class CitiesManager: CitiesManagerLogic {
+final class CityManager: CityManagerLogic {
     private var citiesList = [City]()
     private var citiesTrie = Trie<City>()
     private var dataHandler: DataHandler?
