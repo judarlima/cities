@@ -8,14 +8,19 @@
 
 import UIKit
 
-class CitiesListViewController: UIViewController {
+protocol CitiesListDisplayLogic: class {
+    func displayCities(viewModel: [CityViewModel])
+    func displayError(message: String)
+}
+
+final class CitiesListViewController: UIViewController {
     private weak var presenter: CitiesListPresenterLogic?
     private var interactor: CitiesListInteractorLogic?
     private var viewModel = [CityViewModel]()
     private var coordinator: MainCoordinator?
     private let cellIdentifier = "CityTableViewCell"
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet private weak var searchBar: UISearchBar!
     
     init(coordinator: MainCoordinator,
         interactor: CitiesListInteractorLogic,
@@ -64,7 +69,11 @@ class CitiesListViewController: UIViewController {
 
 extension CitiesListViewController: CitiesListDisplayLogic {
     func displayError(message: String) {
-        print(message)
+        let alertVC = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Retry", style: .default, handler: { [weak self] _ in
+            self?.interactor?.listCities()
+        }))
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     func displayCities(viewModel: [CityViewModel]) {
