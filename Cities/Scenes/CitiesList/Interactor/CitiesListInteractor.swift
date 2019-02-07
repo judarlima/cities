@@ -13,7 +13,7 @@ protocol CitiesListInteractorLogic: class {
     func searchCity(with prefix: String)
 }
 
-class CitiesListInteractor: CitiesListInteractorLogic {
+final class CitiesListInteractor: CitiesListInteractorLogic {
     var presenter: CitiesListPresenterLogic?
     var manager: CitiesManagerLogic?
     
