@@ -10,7 +10,6 @@
 		8701C4B2220A30DC001D0A9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C4B1220A30DC001D0A9D /* AppDelegate.swift */; };
 		8701C4B9220A30DE001D0A9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8701C4B8220A30DE001D0A9D /* Assets.xcassets */; };
 		8701C4BC220A30DE001D0A9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8701C4BA220A30DE001D0A9D /* LaunchScreen.storyboard */; };
-		8701C4C7220A30DE001D0A9D /* CitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C4C6220A30DE001D0A9D /* CitiesTests.swift */; };
 		8701C4D6220A4C43001D0A9D /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C4D5220A4C43001D0A9D /* CoordinatorProtocol.swift */; };
 		8701C4D8220A511C001D0A9D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C4D7220A511C001D0A9D /* MainCoordinator.swift */; };
 		8701C4DD220A5FFB001D0A9D /* CitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C4DC220A5FFB001D0A9D /* CitiesManager.swift */; };
@@ -61,7 +60,6 @@
 		8701C4BB220A30DE001D0A9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8701C4BD220A30DE001D0A9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8701C4C2220A30DE001D0A9D /* CitiesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CitiesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8701C4C6220A30DE001D0A9D /* CitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesTests.swift; sourceTree = "<group>"; };
 		8701C4C8220A30DE001D0A9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8701C4D5220A4C43001D0A9D /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		8701C4D7220A511C001D0A9D /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 			children = (
 				8701C518220BA498001D0A9D /* Mocks */,
 				8701C513220BA395001D0A9D /* Scenes */,
-				8701C4C6220A30DE001D0A9D /* CitiesTests.swift */,
 				8701C4C8220A30DE001D0A9D /* Info.plist */,
 			);
 			path = CitiesTests;
@@ -493,7 +490,6 @@
 			files = (
 				8701C51C220BAA1D001D0A9D /* CitiesManagerMock.swift in Sources */,
 				8701C51E220BAA2F001D0A9D /* CitiesPresenterMock.swift in Sources */,
-				8701C4C7220A30DE001D0A9D /* CitiesTests.swift in Sources */,
 				8701C521220BB28B001D0A9D /* CitiesListPresenterTests.swift in Sources */,
 				8701C52E220BBDC2001D0A9D /* CityLocationInteractorTests.swift in Sources */,
 				8701C51A220BA4C0001D0A9D /* JsonDataHandlerMock.swift in Sources */,

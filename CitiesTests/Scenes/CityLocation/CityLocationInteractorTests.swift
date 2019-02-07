@@ -11,5 +11,6 @@ import XCTest
 class CityLocationInteractorTests: XCTestCase {
 
     override func setUp() {
+        
     }
 }
