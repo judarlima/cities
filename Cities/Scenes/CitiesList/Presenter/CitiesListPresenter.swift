@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol CitiesListPresenterLogic: class {
-    var viewController: CitiesListDisplayLogic? {get set}
+protocol CitiesListPresenterProtocol: class {
+    var viewController: CitiesListDisplayProtocol? {get set}
     func showCitiesList(cities: [City])
     func showError(message: String)
 }
 
-final class CitiesListPresenter: CitiesListPresenterLogic {
-    var viewController: CitiesListDisplayLogic?
+final class CitiesListPresenter: CitiesListPresenterProtocol {
+    var viewController: CitiesListDisplayProtocol?
     
     func showError(message: String) {
         viewController?.displayError(message: message)

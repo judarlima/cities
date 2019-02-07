@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol CitiesManagerLogic {
+protocol CityManagerProtocol {
     func fetchCities(completion: @escaping (Result<[City]>) -> Void)
     func fetchFilteredCities(with prefix: String, completion: @escaping (Result<[City]>) -> Void)
 }
 
-final class CitiesManager: CitiesManagerLogic {
+final class CityManager: CityManagerProtocol {
     private var citiesList = [City]()
     private var citiesTrie = Trie<City>()
     private var dataHandler: DataHandler?
@@ -26,9 +26,10 @@ final class CitiesManager: CitiesManagerLogic {
         if citiesList.isEmpty {
             generateCities { [weak self] (result) in
                 if case let .success(cities) = result {
-                    self?.citiesList = cities
-                    cities.forEach { self?.citiesTrie.insert(word: $0.name, data: $0) }
-                    completion(.success(cities))
+                    let sortedCities = cities.sorted{ $0.name < $1.name }
+                    self?.citiesList = sortedCities
+                    sortedCities.forEach { self?.citiesTrie.insert(word: $0.name, data: $0) }
+                    completion(.success(sortedCities))
                 } else {
                     completion(.failure(.fileNotFound))
                 }

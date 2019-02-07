@@ -8,16 +8,17 @@
 
 import Foundation
 
-protocol CitiesListInteractorLogic: class {
+protocol CitiesListInteractorProtocol: class {
     func listCities()
     func searchCity(with prefix: String)
+    func cityLocation(city: CityViewModel)
 }
 
-final class CitiesListInteractor: CitiesListInteractorLogic {
-    var presenter: CitiesListPresenterLogic?
-    var manager: CitiesManagerLogic?
+final class CitiesListInteractor: CitiesListInteractorProtocol {
+    var presenter: CitiesListPresenterProtocol?
+    var manager: CityManagerProtocol?
     
-    init(presenter: CitiesListPresenterLogic, manager: CitiesManagerLogic) {
+    init(presenter: CitiesListPresenterProtocol, manager: CityManagerProtocol) {
         self.presenter = presenter
         self.manager = manager
     }
@@ -32,6 +33,10 @@ final class CitiesListInteractor: CitiesListInteractorLogic {
                 interactor.presenter?.showError(message: error.localizedDescription)
             }
         })
+    }
+    
+    func cityLocation(city: CityViewModel) {
+        MainCoordinator.shared.cityDetail(viewModel: city)
     }
     
     func searchCity(with prefix: String) {

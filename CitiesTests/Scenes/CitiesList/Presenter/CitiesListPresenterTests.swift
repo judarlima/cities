@@ -9,7 +9,7 @@
 import XCTest
 @testable import Cities
 
-class ViewControllerMock: CitiesListDisplayLogic {
+class ViewControllerMock: CitiesListDisplayProtocol {
     var errorMessage = ""
     var viewModel = [CityViewModel]()
     
@@ -33,7 +33,7 @@ class CitiesListPresenterTests: XCTestCase {
     }
     
     func testWhenShowCitiesListThenViewControllerDisplayCitiesViewModel() {
-        let coord = Coordinate(lat: 100.0, lon: 19.009)
+        let coord = City.Coordinate(lat: 100.0, lon: 19.009)
         let cities = [City(id: 1, country: "BR", name: "São Paulo",coord: coord),
                       City(id: 2, country: "US", name: "New York", coord: coord),
                       City(id: 3, country: "NL", name: "Amsterdam", coord: coord)]
