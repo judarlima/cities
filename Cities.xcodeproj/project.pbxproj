@@ -41,6 +41,7 @@
 		8701C526220BB766001D0A9D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C525220BB766001D0A9D /* Result.swift */; };
 		8701C52B220BB8AC001D0A9D /* CitiesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C52A220BB8AC001D0A9D /* CitiesManagerTests.swift */; };
 		8701C52E220BBDC2001D0A9D /* CityLocationInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C52D220BBDC2001D0A9D /* CityLocationInteractorTests.swift */; };
+		8701C531220BC5E7001D0A9D /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8701C530220BC5E7001D0A9D /* MainCoordinatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		8701C525220BB766001D0A9D /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		8701C52A220BB8AC001D0A9D /* CitiesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesManagerTests.swift; sourceTree = "<group>"; };
 		8701C52D220BBDC2001D0A9D /* CityLocationInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLocationInteractorTests.swift; sourceTree = "<group>"; };
+		8701C530220BC5E7001D0A9D /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 		8701C4C5220A30DE001D0A9D /* CitiesTests */ = {
 			isa = PBXGroup;
 			children = (
+				8701C52F220BC5D6001D0A9D /* Coordinator */,
 				8701C518220BA498001D0A9D /* Mocks */,
 				8701C513220BA395001D0A9D /* Scenes */,
 				8701C4C8220A30DE001D0A9D /* Info.plist */,
@@ -356,6 +359,14 @@
 			path = CityLocation;
 			sourceTree = "<group>";
 		};
+		8701C52F220BC5D6001D0A9D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8701C530220BC5E7001D0A9D /* MainCoordinatorTests.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -489,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8701C51C220BAA1D001D0A9D /* CitiesManagerMock.swift in Sources */,
+				8701C531220BC5E7001D0A9D /* MainCoordinatorTests.swift in Sources */,
 				8701C51E220BAA2F001D0A9D /* CitiesPresenterMock.swift in Sources */,
 				8701C521220BB28B001D0A9D /* CitiesListPresenterTests.swift in Sources */,
 				8701C52E220BBDC2001D0A9D /* CityLocationInteractorTests.swift in Sources */,
