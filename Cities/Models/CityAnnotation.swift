@@ -24,4 +24,3 @@ final class CityAnnotation: NSObject, MKAnnotation {
         return MKCoordinateRegion(center: coordinate, span: span)
     }
 }
-
