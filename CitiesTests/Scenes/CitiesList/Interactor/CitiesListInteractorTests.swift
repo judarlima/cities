@@ -7,27 +7,43 @@
 //
 
 import XCTest
+@testable import Cities
 
 class CitiesListInteractorTests: XCTestCase {
-
+    var sut: CitiesListInteractorLogic!
+    var presenter: CitiesPresenterMock!
+    var manager: CitiesManagerMock!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        presenter = CitiesPresenterMock()
+        manager = CitiesManagerMock(dataHandler: JsonDataHandlerMock())
+        sut = CitiesListInteractor(presenter: presenter,
+                                   manager: manager)
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testListCitiesThenPresenterShowCitiesList() {
+        let expectedNumberOfCities = 6
+        let expectedFirstCitieName = "Alupka"
+        
+        sut.listCities()
+        
+        XCTAssertEqual(expectedNumberOfCities, presenter.cities.count)
+        XCTAssertEqual(expectedFirstCitieName, presenter.cities[0].name)
+        XCTAssertTrue(presenter.errorMessage.isEmpty)
+        
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testFilterCitiesThenPresenterShowFilteredCities() {
+        let filterString = "za"
+        let expectedNumberOfCities = 2
+        let expectedFirstCityName = "Zaponor’ye"
+        let expectedLastCityName = "Zavety Il’icha"
+        
+        sut.searchCity(with: filterString)
+        
+        XCTAssertEqual(expectedNumberOfCities, presenter.cities.count)
+        XCTAssertEqual(expectedFirstCityName, presenter.cities.first!.name)
+        XCTAssertEqual(expectedLastCityName, presenter.cities.last!.name)
+        XCTAssertTrue(presenter.errorMessage.isEmpty)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

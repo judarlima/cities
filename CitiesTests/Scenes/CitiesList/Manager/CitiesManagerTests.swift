@@ -7,27 +7,54 @@
 //
 
 import XCTest
+@testable import Cities
 
 class CitiesManagerTests: XCTestCase {
-
+    var sut: CitiesManager!
+    var dataHandler: JsonDataHandlerMock!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        dataHandler = JsonDataHandlerMock()
+        sut = CitiesManager(dataHandler: dataHandler)
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testWhenDataHandlerReturnsDataThenGeneratesCitiesModel() {
+        let managerExpectation = expectation(description: #function)
+        let expectedCitiesCount = 6
+        let expectedFirstCityName = "Alupka"
+        var managerResult = [City]()
+        
+        sut.fetchCities { (result) in
+            if case let .success(cities) = result {
+                managerResult = cities
+            }
+            managerExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 0.3) { (_) in
+            XCTAssertEqual(expectedCitiesCount, managerResult.count)
+            XCTAssertEqual(expectedFirstCityName, managerResult.first!.name)
         }
     }
-
+    
+    func testWhenReceivePrefixThenReturnFilteredCities() {
+        let managerExpectation = expectation(description: #function)
+        let prefixString = "y"
+        let expectedCitiesCount = 1
+        let expectedFirstCityName = "Yurevichi"
+        var managerResult = [City]()
+        
+        sut.fetchCities { (_) in } //Call fetch cities to create the prefix trie
+        sut.fetchFilteredCities(with: prefixString) { (result) in
+            if case let .success(cities) = result {
+                managerResult = cities
+            }
+            managerExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 0.3) { (_) in
+            XCTAssertEqual(expectedCitiesCount, managerResult.count)
+            XCTAssertEqual(expectedFirstCityName, managerResult.first!.name)
+        }
+    }
 }
