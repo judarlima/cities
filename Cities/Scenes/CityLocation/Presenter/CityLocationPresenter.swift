@@ -9,11 +9,12 @@
 import Foundation
 
 protocol CityLocationPresenterProtocol: class {
+    var viewController: CityLocationDisplayProtocol? {get set}
     func showCityLocation(_ city: CityViewModel)
 }
 
 final class CityLocationPresenter: CityLocationPresenterProtocol {
-    var viewController: CityLocationViewController?
+    var viewController: CityLocationDisplayProtocol?
     
     func showCityLocation(_ city: CityViewModel) {
         let cityAnnotation = CityAnnotation(viewModel: city)

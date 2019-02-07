@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-protocol CityLocationDisplayLogic {
+protocol CityLocationDisplayProtocol {
     func displayMap(location: CityAnnotation)
 }
 
@@ -37,7 +37,7 @@ final class CityLocationViewController: UIViewController {
     }
 }
 
-extension CityLocationViewController: CityLocationDisplayLogic {
+extension CityLocationViewController: CityLocationDisplayProtocol {
     func displayMap(location: CityAnnotation) {
         mapView.addAnnotation(location)
         mapView.setRegion(location.region, animated: true)

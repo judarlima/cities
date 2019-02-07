@@ -83,7 +83,6 @@ extension CitiesListViewController: UITableViewDelegate {
         interactor?.cityLocation(city: viewModel[indexPath.row])
         searchBar.resignFirstResponder()
     }
-    
 }
 
 extension CitiesListViewController: UITableViewDataSource {
@@ -101,7 +100,6 @@ extension CitiesListViewController: UITableViewDataSource {
         cell.bind(viewModel: viewModel[indexPath.row])
         return cell
     }
-    
 }
 
 extension CitiesListViewController: UISearchBarDelegate {

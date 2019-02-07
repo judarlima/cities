@@ -19,3 +19,11 @@ struct CityViewModel {
         self.lon = String(city.coord.lon)
     }
 }
+
+extension CityViewModel: Equatable {
+    static func ==(lhs: CityViewModel, rhs: CityViewModel) -> Bool {
+        return lhs.name == rhs.name &&
+            lhs.lat == rhs.lat &&
+            lhs.lon == rhs.lon
+    }
+}
