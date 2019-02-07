@@ -12,7 +12,7 @@ protocol CityLocationInteractorLogic {
     func location(from city: CityViewModel)
 }
 
-class CityLocationInteractor: CityLocationInteractorLogic {
+final class CityLocationInteractor: CityLocationInteractorLogic {
     private var presenter: CityLocationPresenterLogic
     
     init(presenter: CityLocationPresenterLogic) {
