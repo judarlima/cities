@@ -9,7 +9,7 @@
 import XCTest
 @testable import Cities
 
-class ViewControllerMock: CitiesListDisplayLogic {
+class ViewControllerMock: CitiesListDisplayProtocol {
     var errorMessage = ""
     var viewModel = [CityViewModel]()
     

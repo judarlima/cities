@@ -16,13 +16,10 @@ protocol CityLocationDisplayLogic {
 final class CityLocationViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     private var viewModel: CityViewModel!
-    private var interactor: CityLocationInteractorLogic?
-    private weak var presenter: CityLocationPresenterLogic?
+    private var interactor: CityLocationInteractorProtocol?
     
-    init(interactor: CityLocationInteractorLogic,
-         presenter: CityLocationPresenterLogic) {
+    init(interactor: CityLocationInteractorProtocol) {
         self.interactor = interactor
-        self.presenter = presenter
         super.init(nibName: "CityLocationViewController", bundle: Bundle.main)
     }
     

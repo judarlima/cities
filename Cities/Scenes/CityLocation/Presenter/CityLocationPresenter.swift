@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol CityLocationPresenterLogic: class {
+protocol CityLocationPresenterProtocol: class {
     func showCityLocation(_ city: CityViewModel)
 }
 
-final class CityLocationPresenter: CityLocationPresenterLogic {
+final class CityLocationPresenter: CityLocationPresenterProtocol {
     var viewController: CityLocationViewController?
     
     func showCityLocation(_ city: CityViewModel) {

@@ -9,8 +9,8 @@
 import Foundation
 @testable import Cities
 
-class CitiesPresenterMock: CitiesListPresenterLogic {
-    var viewController: CitiesListDisplayLogic?
+class CitiesPresenterMock: CitiesListPresenterProtocol {
+    var viewController: CitiesListDisplayProtocol?
     var errorMessage: String = ""
     var cities: [City] = [City]()
 

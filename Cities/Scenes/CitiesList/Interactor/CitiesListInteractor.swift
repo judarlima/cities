@@ -8,17 +8,17 @@
 
 import Foundation
 
-protocol CitiesListInteractorLogic: class {
+protocol CitiesListInteractorProtocol: class {
     func listCities()
     func searchCity(with prefix: String)
     func cityLocation(city: CityViewModel)
 }
 
-final class CitiesListInteractor: CitiesListInteractorLogic {
-    var presenter: CitiesListPresenterLogic?
-    var manager: CityManagerLogic?
+final class CitiesListInteractor: CitiesListInteractorProtocol {
+    var presenter: CitiesListPresenterProtocol?
+    var manager: CityManagerProtocol?
     
-    init(presenter: CitiesListPresenterLogic, manager: CityManagerLogic) {
+    init(presenter: CitiesListPresenterProtocol, manager: CityManagerProtocol) {
         self.presenter = presenter
         self.manager = manager
     }

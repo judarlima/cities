@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol CityLocationInteractorLogic {
+protocol CityLocationInteractorProtocol {
     func location(from city: CityViewModel)
 }
 
-final class CityLocationInteractor: CityLocationInteractorLogic {
-    private var presenter: CityLocationPresenterLogic
+final class CityLocationInteractor: CityLocationInteractorProtocol {
+    private var presenter: CityLocationPresenterProtocol
     
-    init(presenter: CityLocationPresenterLogic) {
+    init(presenter: CityLocationPresenterProtocol) {
         self.presenter = presenter
     }
     

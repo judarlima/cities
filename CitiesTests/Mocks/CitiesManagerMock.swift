@@ -9,7 +9,7 @@
 import Foundation
 @testable import Cities
 
-class CitiesManagerMock: CityManagerLogic {
+class CitiesManagerMock: CityManagerProtocol {
     private var citiesList = [City]()
     private var citiesTrie = Trie<City>()
     private var dataHandler: DataHandler?

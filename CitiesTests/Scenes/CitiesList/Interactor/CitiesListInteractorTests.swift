@@ -10,7 +10,7 @@ import XCTest
 @testable import Cities
 
 class CitiesListInteractorTests: XCTestCase {
-    var sut: CitiesListInteractorLogic!
+    var sut: CitiesListInteractorProtocol!
     var presenter: CitiesPresenterMock!
     var manager: CitiesManagerMock!
     

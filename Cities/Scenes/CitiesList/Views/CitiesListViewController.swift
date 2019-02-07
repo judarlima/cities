@@ -8,23 +8,20 @@
 
 import UIKit
 
-protocol CitiesListDisplayLogic: class {
+protocol CitiesListDisplayProtocol: class {
     func displayCities(viewModel: [CityViewModel])
     func displayError(message: String)
 }
 
 final class CitiesListViewController: UIViewController {
-    private weak var presenter: CitiesListPresenterLogic?
-    private var interactor: CitiesListInteractorLogic?
+    private var interactor: CitiesListInteractorProtocol?
     private var viewModel = [CityViewModel]()
     private let cellIdentifier = "CityTableViewCell"
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
     
-    init(interactor: CitiesListInteractorLogic,
-         presenter: CitiesListPresenterLogic) {
+    init(interactor: CitiesListInteractorProtocol) {
         super.init(nibName: "CitiesListViewController", bundle: Bundle.main)
-        self.presenter = presenter
         self.interactor = interactor
     }
     
@@ -64,7 +61,7 @@ final class CitiesListViewController: UIViewController {
     
 }
 
-extension CitiesListViewController: CitiesListDisplayLogic {
+extension CitiesListViewController: CitiesListDisplayProtocol {
     func displayError(message: String) {
         let alertVC = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "Retry", style: .default, handler: { [weak self] _ in
