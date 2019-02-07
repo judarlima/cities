@@ -84,6 +84,7 @@ extension CitiesListViewController: CitiesListDisplayLogic {
 extension CitiesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         interactor?.cityLocation(city: viewModel[indexPath.row])
+        searchBar.resignFirstResponder()
     }
     
 }

@@ -26,9 +26,10 @@ final class CityManager: CityManagerLogic {
         if citiesList.isEmpty {
             generateCities { [weak self] (result) in
                 if case let .success(cities) = result {
-                    self?.citiesList = cities
-                    cities.forEach { self?.citiesTrie.insert(word: $0.name, data: $0) }
-                    completion(.success(cities))
+                    let sortedCities = cities.sorted{ $0.name < $1.name }
+                    self?.citiesList = sortedCities
+                    sortedCities.forEach { self?.citiesTrie.insert(word: $0.name, data: $0) }
+                    completion(.success(sortedCities))
                 } else {
                     completion(.failure(.fileNotFound))
                 }
