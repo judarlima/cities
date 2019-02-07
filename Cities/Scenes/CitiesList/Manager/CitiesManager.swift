@@ -8,37 +8,33 @@
 
 import Foundation
 
-enum CitiesError: Error {
-    case fileNotFound
-    case unexpected(String)
-}
-
-enum Result<T> {
-    case success(T)
-    case failure(CitiesError)
-}
-
 protocol CitiesManagerLogic {
     func fetchCities(completion: @escaping (Result<[City]>) -> Void)
     func fetchFilteredCities(with prefix: String, completion: @escaping (Result<[City]>) -> Void)
 }
 
-class CitiesManager: CitiesManagerLogic {
-    var citiesList = [City]()
-    var citiesTrie = Trie<City>()
+final class CitiesManager: CitiesManagerLogic {
+    private var citiesList = [City]()
+    private var citiesTrie = Trie<City>()
+    private var dataHandler: DataHandler?
     
-    private let fileName = "cities"
+    init(dataHandler: DataHandler) {
+        self.dataHandler = dataHandler
+    }
     
     func fetchCities(completion: @escaping (Result<[City]>) -> Void) {
-        if !citiesList.isEmpty {
-            completion(.success(citiesList))
-        }
-        else if case let .success(cities) = citiesData() {
-            cities.forEach { citiesTrie.insert(word: $0.name, data: $0) }
-            
-            completion(.success(cities))
+        if citiesList.isEmpty {
+            generateCities { [weak self] (result) in
+                if case let .success(cities) = result {
+                    self?.citiesList = cities
+                    cities.forEach { self?.citiesTrie.insert(word: $0.name, data: $0) }
+                    completion(.success(cities))
+                } else {
+                    completion(.failure(.fileNotFound))
+                }
+            }
         } else {
-            completion(.failure(.fileNotFound))
+            completion(.success(citiesList))
         }
     }
     
@@ -46,21 +42,20 @@ class CitiesManager: CitiesManagerLogic {
         let filteredCities = citiesTrie.findWordsWithPrefix(prefix: prefix)
         completion(.success(filteredCities))
     }
-
-    private func citiesData() -> Result<[City]> {
-        guard
-            let filePath = Bundle.main.path(forResource: fileName, ofType: "json")
-            else { return .failure(.fileNotFound) }
-        do {
-            let jsonData = try Data(contentsOf: URL(fileURLWithPath: filePath),
-                                    options: .mappedIfSafe)
-            let citiesModel = try JSONDecoder().decode([City].self, from: jsonData)
-            let sortedCities = citiesModel.sorted{ $0.name < $1.name }
-            self.citiesList = sortedCities
-            return .success(sortedCities)
-        } catch {
-            return .failure(.unexpected(error.localizedDescription))
-        }
-    }
     
+    private func generateCities(completion: @escaping (Result<[City]>) -> Void) {
+        dataHandler?.loadData(completion: { (result) in
+            switch result {
+            case let .success(data):
+                do {
+                    let citiesModel = try JSONDecoder().decode([City].self, from: data)
+                    completion(.success(citiesModel))
+                } catch {
+                    completion(.failure(.couldNotParseObject))
+                }
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        })
+    }    
 }

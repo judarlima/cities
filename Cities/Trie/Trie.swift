@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Trie<T> {
+final class Trie<T> {
     typealias Node = TrieNode<Character, T>
     
     fileprivate let root: Node

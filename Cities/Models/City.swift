@@ -8,16 +8,32 @@
 
 import Foundation
 
-struct City: Decodable {
-    let _id: Int
+struct City {
+    let id: Int
     let country: String
-    var name: String
+    let name: String
     let coord: Coordinate
+}
+
+extension City: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case country, name
+        case coord
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(Int.self, forKey: .id)
+        country = try values.decode(String.self, forKey: .country)
+        name = try values.decode(String.self, forKey: .name)
+        coord = try values.decode(Coordinate.self, forKey: .coord)
+    }
 }
 
 extension City: Equatable {
     static func == (lhs: City, rhs: City) -> Bool {
-        return lhs._id == rhs._id &&
+        return lhs.id == rhs.id &&
             lhs.country == rhs.country &&
             lhs.name == rhs.name &&
             lhs.coord.lat == rhs.coord.lat &&

@@ -8,19 +8,14 @@
 
 import Foundation
 
-protocol CitiesListDisplayLogic: class {
-    func displayCities(viewModel: [CityViewModel])
-    func displayError(message: String)
-}
-
 protocol CitiesListPresenterLogic: class {
     var viewController: CitiesListDisplayLogic? {get set}
     func showCitiesList(cities: [City])
     func showError(message: String)
 }
 
-class CitiesListPresenter: CitiesListPresenterLogic {
-    weak var viewController: CitiesListDisplayLogic?
+final class CitiesListPresenter: CitiesListPresenterLogic {
+    var viewController: CitiesListDisplayLogic?
     
     func showError(message: String) {
         viewController?.displayError(message: message)
@@ -29,9 +24,5 @@ class CitiesListPresenter: CitiesListPresenterLogic {
     func showCitiesList(cities: [City]) {
         let viewModel = cities.map { CityViewModel(city: $0) }
         viewController?.displayCities(viewModel: viewModel)
-    }
-    
-    func showFilteredList(cities: [City]) {
-        
     }
 }
