@@ -13,7 +13,7 @@ protocol CityLocationDisplayLogic {
     func displayMap(location: CityAnnotation)
 }
 
-class CityLocationViewController: UIViewController {
+final class CityLocationViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     private var viewModel: CityViewModel!
     private var interactor: CityLocationInteractorLogic?
