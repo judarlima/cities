@@ -114,4 +114,8 @@ extension CitiesListViewController: UISearchBarDelegate {
             interactor?.searchCity(with: searchText)
         }
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }
