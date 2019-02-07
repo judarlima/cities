@@ -14,7 +14,7 @@ protocol CityLocationPresenterProtocol: class {
 }
 
 final class CityLocationPresenter: CityLocationPresenterProtocol {
-    var viewController: CityLocationDisplayProtocol?
+    weak var viewController: CityLocationDisplayProtocol?
     
     func showCityLocation(_ city: CityViewModel) {
         let cityAnnotation = CityAnnotation(viewModel: city)

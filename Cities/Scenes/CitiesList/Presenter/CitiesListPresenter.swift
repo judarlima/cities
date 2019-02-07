@@ -15,7 +15,7 @@ protocol CitiesListPresenterProtocol: class {
 }
 
 final class CitiesListPresenter: CitiesListPresenterProtocol {
-    var viewController: CitiesListDisplayProtocol?
+    weak var viewController: CitiesListDisplayProtocol?
     
     func showError(message: String) {
         viewController?.displayError(message: message)
