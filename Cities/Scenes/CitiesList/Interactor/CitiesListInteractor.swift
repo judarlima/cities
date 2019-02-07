@@ -15,8 +15,8 @@ protocol CitiesListInteractorProtocol: class {
 }
 
 final class CitiesListInteractor: CitiesListInteractorProtocol {
-    var presenter: CitiesListPresenterProtocol?
-    var manager: CityManagerProtocol?
+    private var presenter: CitiesListPresenterProtocol?
+    private var manager: CityManagerProtocol?
     
     init(presenter: CitiesListPresenterProtocol, manager: CityManagerProtocol) {
         self.presenter = presenter
