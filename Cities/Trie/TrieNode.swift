@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TrieNode<T: Hashable, U> {
+final class TrieNode<T: Hashable, U> {
     weak var parentNode: TrieNode?
     
     var value: T?
