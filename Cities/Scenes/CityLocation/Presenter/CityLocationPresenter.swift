@@ -12,7 +12,7 @@ protocol CityLocationPresenterLogic: class {
     func showCityLocation(_ city: CityViewModel)
 }
 
-class CityLocationPresenter: CityLocationPresenterLogic {
+final class CityLocationPresenter: CityLocationPresenterLogic {
     var viewController: CityLocationViewController?
     
     func showCityLocation(_ city: CityViewModel) {
