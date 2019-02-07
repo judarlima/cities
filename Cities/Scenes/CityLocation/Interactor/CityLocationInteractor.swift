@@ -13,13 +13,13 @@ protocol CityLocationInteractorProtocol {
 }
 
 final class CityLocationInteractor: CityLocationInteractorProtocol {
-    private var presenter: CityLocationPresenterProtocol
+    private var presenter: CityLocationPresenterProtocol?
     
     init(presenter: CityLocationPresenterProtocol) {
         self.presenter = presenter
     }
     
     func location(from city: CityViewModel) {
-        presenter.showCityLocation(city)
+        presenter?.showCityLocation(city)
     }
 }

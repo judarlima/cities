@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-protocol CityLocationDisplayProtocol {
+protocol CityLocationDisplayProtocol: class {
     func displayMap(location: CityAnnotation)
 }
 
