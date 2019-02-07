@@ -34,16 +34,14 @@ class CitiesListInteractorTests: XCTestCase {
     }
     
     func testFilterCitiesThenPresenterShowFilteredCities() {
-        let filterString = "za"
-        let expectedNumberOfCities = 2
-        let expectedFirstCityName = "Zaponor’ye"
-        let expectedLastCityName = "Zavety Il’icha"
+        let filterString = "G"
+        let expectedNumberOfCities = 1
+        let expectedFirstCityName = "Gumist’a"
         
         sut.searchCity(with: filterString)
         
         XCTAssertEqual(expectedNumberOfCities, presenter.cities.count)
         XCTAssertEqual(expectedFirstCityName, presenter.cities.first!.name)
-        XCTAssertEqual(expectedLastCityName, presenter.cities.last!.name)
         XCTAssertTrue(presenter.errorMessage.isEmpty)
     }
 }

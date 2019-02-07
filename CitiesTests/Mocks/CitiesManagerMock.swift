@@ -18,8 +18,8 @@ class CitiesManagerMock: CitiesManagerLogic {
         self.dataHandler = dataHandler
         generateCities { [weak self] (result) in
             if case let .success(cities) = result {
-                self?.citiesList = cities
-                cities.forEach { self?.citiesTrie.insert(word: $0.name, data: $0) }
+                self?.citiesList = cities.sorted(by: { $0.name < $1.name })
+                self?.citiesList.forEach { self?.citiesTrie.insert(word: $0.name, data: $0) }
             } else {
                 fatalError("Could not found cities result.")
             }
