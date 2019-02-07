@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainCoordinator: Coordinator {
+final class MainCoordinator: Coordinator {
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -17,7 +17,7 @@ class MainCoordinator: Coordinator {
     
     func start() {
         let presenter = CitiesListPresenter()
-        let manager = CitiesManager()
+        let manager = CitiesManager(dataHandler: JsonDataHandler())
         let interactor = CitiesListInteractor(presenter: presenter, manager: manager)
         let viewController = CitiesListViewController(coordinator: self,
                                                       interactor: interactor,
