@@ -6,7 +6,7 @@
 <br><br>
 <br><br>
 ## Preview
-![](https://media.giphy.com/media/7YCVRYV2lQ4oHCP66D/giphy.gif)
+![](app-preview.gif)
 <br><br>
 <br><br>
 ## Requirements
